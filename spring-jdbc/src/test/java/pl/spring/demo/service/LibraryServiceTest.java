@@ -5,12 +5,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pl.spring.demo.to.BookTo;
 import pl.spring.demo.to.LibraryTo;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "CommonServiceTest-context.xml")
@@ -25,6 +26,7 @@ public class LibraryServiceTest {
         List<LibraryTo> libraries = libraryService.findAllLibraries();
         // then
         assertNotNull(libraries);
+        assertFalse(libraries.isEmpty());
     }
 
     @Test
@@ -51,7 +53,7 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void testShouldReturnLibrariesHavingGivenBook() {
+    public void testShouldReturnLibrariesHavingBookTitle() {
         // given
         final String bookTitle = "Sample Book";
         // when
@@ -59,19 +61,6 @@ public class LibraryServiceTest {
         // then
         assertNotNull(libraries);
         assertFalse(libraries.isEmpty());
-        for (LibraryTo library : libraries) {
-            assertLibraryHasBook(library, bookTitle);
-        }
-    }
-
-    private void assertLibraryHasBook(LibraryTo library, String bookTitle) {
-        boolean hasBook = false;
-        for (BookTo book : library.getBooks()) {
-            if (bookTitle != null && bookTitle.equals(book.getTitle())) {
-                hasBook = true;
-                break;
-            }
-        }
-        assertTrue("Library doen't have a book", hasBook);
+        assertEquals("Biblioteka Rynek", libraries.get(0).getName());
     }
 }

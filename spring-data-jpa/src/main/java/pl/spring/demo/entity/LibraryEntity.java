@@ -11,7 +11,7 @@ public class LibraryEntity {
     private Long id;
     private String name;
     @OneToOne(optional = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "address_id", nullable = true)
     private AddressEntity address;
     @OneToMany(mappedBy = "library", orphanRemoval = false, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<BookEntity> books;
