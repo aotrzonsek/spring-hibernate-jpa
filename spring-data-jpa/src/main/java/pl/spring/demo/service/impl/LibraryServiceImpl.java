@@ -43,4 +43,12 @@ public class LibraryServiceImpl implements LibraryService {
         List<LibraryEntity> libraries = libraryRepository.findLibrariesThatHaveBookByTitle(bookTitle);
         return mapper.mapAsList(libraries, LibraryTo.class);
     }
+
+    @Override
+    @Transactional(readOnly = false)
+    public LibraryTo saveOrUpdateLibrary(LibraryTo library) {
+        LibraryEntity libraryEntity = mapper.map(library, LibraryEntity.class);
+        libraryEntity = libraryRepository.save(libraryEntity);
+        return mapper.map(libraryEntity, LibraryTo.class);
+    }
 }

@@ -64,6 +64,51 @@ public class LibraryServiceTest {
         }
     }
 
+    @Test
+    public void testShouldSaveNewLibrary() {
+        // given
+        final String libraryName = "NewLibrary";
+        LibraryTo library = new LibraryTo();
+        library.setName(libraryName);
+        // when
+        libraryService.saveOrUpdateLibrary(library);
+        // then
+        List<LibraryTo> librariesByName = libraryService.findAllLibrariesByName(libraryName);
+        assertNotNull(librariesByName);
+        assertFalse(librariesByName.isEmpty());
+    }
+
+    @Test
+    public void testShouldUpdateLibrary() {
+        // given
+        final String currentLibraryName = "Biblioteka Rynek";
+        final String newLibraryName = "NewLibraryName";
+        LibraryTo library = libraryService.findAllLibrariesByName(currentLibraryName).get(0);
+        library.setName(newLibraryName);
+        // when
+        libraryService.saveOrUpdateLibrary(library);
+        // then
+        List<LibraryTo> librariesByOldName = libraryService.findAllLibrariesByName(currentLibraryName);
+        assertNotNull(librariesByOldName);
+        assertTrue(librariesByOldName.isEmpty());
+
+        List<LibraryTo> librariesByNewName = libraryService.findAllLibrariesByName(newLibraryName);
+        assertNotNull(librariesByNewName);
+        assertFalse(librariesByNewName.isEmpty());
+    }
+
+    @Test(expected = org.springframework.orm.ObjectOptimisticLockingFailureException.class)
+    public void testShouldThrowOptimisticLockingExceptionOnLibraryUpdate() {
+        // given
+        final String libraryName = "Biblioteka Rynek";
+        LibraryTo library = libraryService.findAllLibrariesByName(libraryName).get(0);
+        library.setVersion(0);
+        // when
+        libraryService.saveOrUpdateLibrary(library);
+        // then
+        fail("should throw OptimisticLockingException");
+    }
+
     private void assertLibraryHasBook(LibraryTo library, String bookTitle) {
         boolean hasBook = false;
         for (BookTo book : library.getBooks()) {

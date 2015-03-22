@@ -7,6 +7,7 @@ public class LibraryTo {
     private String name;
     private AddressTo address;
     private Set<BookTo> books;
+    private long version;
 
     public Long getId() {
         return id;
@@ -38,5 +39,13 @@ public class LibraryTo {
 
     public void setBooks(Set<BookTo> books) {
         this.books = books;
+    }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
     }
 }

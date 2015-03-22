@@ -15,6 +15,8 @@ public class LibraryEntity {
     private AddressEntity address;
     @OneToMany(mappedBy = "library", orphanRemoval = false, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<BookEntity> books;
+    @Version
+    private long version;
 
     public Long getId() {
         return id;
@@ -46,5 +48,13 @@ public class LibraryEntity {
 
     public void setBooks(Set<BookEntity> books) {
         this.books = books;
+    }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
     }
 }
