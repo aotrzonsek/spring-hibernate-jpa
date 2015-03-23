@@ -1,11 +1,12 @@
 package pl.spring.demo.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "BOOK")
-public class BookEntity {
+public class BookEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -50,5 +51,9 @@ public class BookEntity {
 
     public void setAuthors(Set<AuthorEntity> authors) {
         this.authors = authors;
+    }
+
+    public LibraryEntity getLibrary() {
+        return library;
     }
 }

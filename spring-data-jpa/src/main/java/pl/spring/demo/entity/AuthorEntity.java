@@ -1,11 +1,12 @@
 package pl.spring.demo.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "AUTHOR")
 @PrimaryKeyJoinColumn(name = "author_id", referencedColumnName = "id")
-public class AuthorEntity extends PersonEntity {
+public class AuthorEntity extends PersonEntity implements Serializable {
     @Column(name = "publications")
     private int publicationsNumber;
 

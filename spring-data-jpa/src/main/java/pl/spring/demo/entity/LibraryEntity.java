@@ -1,11 +1,12 @@
 package pl.spring.demo.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "LIBRARY")
-public class LibraryEntity {
+public class LibraryEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

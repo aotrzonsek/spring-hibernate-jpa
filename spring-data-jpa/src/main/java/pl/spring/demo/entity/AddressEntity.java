@@ -1,10 +1,11 @@
 package pl.spring.demo.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "ADDRESS")
-public class AddressEntity {
+public class AddressEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

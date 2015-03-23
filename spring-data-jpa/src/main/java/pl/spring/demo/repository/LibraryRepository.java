@@ -8,7 +8,7 @@ import pl.spring.demo.entity.LibraryEntity;
 
 import java.util.List;
 
-public interface LibraryRepository extends JpaRepository<LibraryEntity, Long> {
+public interface LibraryRepository extends JpaRepository<LibraryEntity, Long>, LibraryLambdaRepository {
 
     @Query("from LibraryEntity l where l.name like :name%")
     List<LibraryEntity> findByName(@Param("name") String name);
