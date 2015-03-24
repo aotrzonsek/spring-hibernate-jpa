@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface LibraryRepository extends JpaRepository<LibraryEntity, Long>, LibraryLambdaRepository {
 
+    List<LibraryEntity> findByNameLike(String name);
+
     @Query("from LibraryEntity l where l.name like :name%")
     List<LibraryEntity> findByName(@Param("name") String name);
 

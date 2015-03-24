@@ -11,12 +11,9 @@
                            http://www.springframework.org/schema/data/jpa
                            http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <jpa:repositories base-package="pl.spring.demo.repository"
-                      entity-manager-factory-ref="entityManagerFactory"
-                      transaction-manager-ref="transactionManager" />
+    <jpa:repositories base-package="pl.spring.demo.repository" />
 
     <util:properties id="hsqldbJpaProps" location="classpath:/test_data_access/hsqldb_jpa.properties"/>
-    <util:properties id="connectionProps" location="classpath:/test_data_access/hsqldb_connection.properties"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
@@ -24,9 +21,7 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <jdbc:embedded-database id="dataSource" type="HSQL">
-        <!--<jdbc:script location="classpath:/import.sql" encoding="UTF-8" />-->
-    </jdbc:embedded-database>
+    <jdbc:embedded-database id="dataSource" type="HSQL" />
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" depends-on="transactionManager">
         <property name="persistenceUnitName" value="hsql"/>
