@@ -11,7 +11,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 @Transactional(Transactional.TxType.SUPPORTS)
-public abstract class AbstractDao<T extends Object> implements Dao<T> {
+public abstract class AbstractDao<T> implements Dao<T> {
     @Autowired
     private SessionFactory sessionFactory;
     private Class<T> domainClass;
