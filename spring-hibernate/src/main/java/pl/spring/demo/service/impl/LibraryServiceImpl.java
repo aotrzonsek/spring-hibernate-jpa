@@ -4,7 +4,7 @@ import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.spring.demo.dao.impl.LibraryDaoImpl;
+import pl.spring.demo.dao.LibraryDao;
 import pl.spring.demo.entity.LibraryEntity;
 import pl.spring.demo.service.LibraryService;
 import pl.spring.demo.to.LibraryTo;
@@ -16,7 +16,7 @@ import java.util.List;
 public class LibraryServiceImpl implements LibraryService {
 
     @Autowired
-    private LibraryDaoImpl libraryDao;
+    private LibraryDao libraryDao;
     @Autowired
     private MapperFacade mapper;
 

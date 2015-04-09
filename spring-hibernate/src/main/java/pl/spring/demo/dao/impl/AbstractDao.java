@@ -5,10 +5,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.spring.demo.dao.Dao;
 
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+@Transactional
 public abstract class AbstractDao<T extends Object> implements Dao<T> {
     @Autowired
     private SessionFactory sessionFactory;

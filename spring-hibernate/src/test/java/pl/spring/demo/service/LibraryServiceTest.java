@@ -117,6 +117,6 @@ public class LibraryServiceTest {
                 break;
             }
         }
-        assertTrue("Library doen't have a book", hasBook);
+        assertTrue("Library doesn't have a book", hasBook);
     }
 }
