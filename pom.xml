@@ -12,6 +12,8 @@
     <modules>
         <module>spring-data-jpa</module>
         <module>spring-jdbc</module>
+        <module>spring-data-model</module>
+        <module>spring-hibernate</module>
     </modules>
 
     <properties>

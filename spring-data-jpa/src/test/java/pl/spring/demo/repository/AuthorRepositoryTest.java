@@ -20,9 +20,9 @@ public class AuthorRepositoryTest {
     @Test
     public void testShouldFindAuthorById() {
         // given
-        final long bookId = 1;
+        final long id = 1;
         // when
-        AuthorEntity authorEntity = authorRepository.findOne(bookId);
+        AuthorEntity authorEntity = authorRepository.findOne(id);
         // then
         assertNotNull(authorEntity);
     }
