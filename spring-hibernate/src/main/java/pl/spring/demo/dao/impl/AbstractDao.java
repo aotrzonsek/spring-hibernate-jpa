@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-@Transactional
+@Transactional(Transactional.TxType.SUPPORTS)
 public abstract class AbstractDao<T extends Object> implements Dao<T> {
     @Autowired
     private SessionFactory sessionFactory;
